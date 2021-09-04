@@ -1,4 +1,4 @@
 set -x
-docker build -f Dockerfile -t myclient .
-
-docker run -dt --log-driver=fluentd myclient
+app=fluent-client
+docker build -f ${app}.df -t $app .
+docker run -dt --name $app --log-driver=fluentd $app

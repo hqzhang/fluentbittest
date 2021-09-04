@@ -1,0 +1,4 @@
+FROM  fluent/fluent-bit:1.8
+COPY fluent-bit.conf /fluent-bit/etc/fluent-bit.conf
+EXPOSE 2020
+CMD ["/fluent-bit/bin/fluent-bit", "-c", "/fluent-bit/etc/fluent-bit.conf"] 
