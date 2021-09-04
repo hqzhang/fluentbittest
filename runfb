@@ -1,3 +1,4 @@
 docker run -p 127.0.0.1:24224:24224 fluent/fluent-bit:1.8 \
-              /fluent-bit/bin/fluent-bit -c -i forward -o stdout -p format=json_lines -f 1
+           -v  $(pwd)/fluent-bit.conf:/fluent-bit/bin/fluent-bit \ 
+              /fluent-bit/bin/fluent-bit -c /fluent-bin/etc/fluent-bit.conf
 
