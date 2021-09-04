@@ -1,0 +1,1 @@
+sudo ./promtail -config.file ./config-promtail.yml
