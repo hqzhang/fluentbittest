@@ -1,0 +1,4 @@
+From ubuntu:latest
+
+CMD while sleep 1; do echo HQ thinking Hello World; done
+
