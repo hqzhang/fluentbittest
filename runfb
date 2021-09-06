@@ -1,20 +1,12 @@
-
+set -x	
 dir=loki/clients/cmd/fluent-bit
 app=fluent-bit-plugin-loki
 tag=v1.0
-docker build -f $dir/Dockerfile -t $app ./loki
+docker build -f $dir/Dockerfile -t grafana/$app:$tag ./loki
 
-#docker rm -f $app
-#docker run -it --name $name -p 127.0.0.1:24224:24224 \
-#           -e LOG_PATH=/var/log/system.log  \
-#           -e LOKI_URL=http://localhost:3100/loki/api/v1/push  \
-#           $app/$tag
-
-#app=fluent-bit-app    
-
-#docker build -f ${app}.df -t $app .
 docker rm -f $app
+sleep 3
 docker run -it --name $app -p 127.0.0.1:24224:24224   \
            -e LOG_PATH=/var/log/system.log  \
-           -e LOKI_URL=http://localhost:3100/loki/api/v1/push  \
-           $app        
+           -e LOKI_URL=http://192.168.0.43:3100/loki/api/v1/push  \
+           grafana/$app:$tag        

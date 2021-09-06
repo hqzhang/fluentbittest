@@ -1,0 +1,18 @@
+#!/bin/bash
+# execute fluent-bit with loki plugins
+set -x
+host=127.0.0.1
+target=192.168.0.43
+app=fluent-bit-app    
+echo "build fluent-bit with loki plugin"
+docker build -f ${app}.df -t $app .
+
+echo "run fluent-bit inside docker ..."
+docker rm -f $app
+docker run -dt --name $app -p ${host}:24224:24224   \
+           -e LOKI_URL=http://${target}:3100/loki/api/v1/push  \
+           $app
+
+sleep 5
+echo "run client first "
+./runclient
